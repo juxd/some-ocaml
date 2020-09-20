@@ -1,0 +1,5 @@
+(executable
+ (name student_info)
+ (libraries base core part2)
+ (preprocess (pps ppx_jane))
+)
