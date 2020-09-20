@@ -1,0 +1,6 @@
+(library
+ (name part1)
+ (libraries base core)
+ (inline_tests)
+ (preprocess (pps ppx_jane))
+)
