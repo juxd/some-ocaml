@@ -1,0 +1,12 @@
+#+TITLE: some ocaml exercises
+
+* Requirements
+- base, core, dune
+
+* Nice to have
+- merlin, ocamlformat
+- Emacs (Tuareg)
+
+* References
+- Real world ocaml
+- Jane street's Core library [[https://ocaml.janestreet.com/ocaml-core/latest/doc/core/index.html][https://ocaml.janestreet.com/ocaml-core/latest/doc/core/index.html]]
