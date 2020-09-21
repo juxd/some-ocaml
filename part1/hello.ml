@@ -21,7 +21,7 @@ let%expect_test "hello world" =
 
 let introduction_for name = sprintf "my name is %s" name
 
-let i_am_from country = sprintf "and I am from %s" country
+let _i_am_from country = sprintf "and I am from %s" country
 
 let introduce_to_world _name _country =
   raise_s [%message "To be implemented"]
@@ -58,6 +58,10 @@ let rec adder x n =
 ;;
 
 let%expect_test "adder" =
+  print_s ([%sexp_of: bool] (is_odd 3));
+  [%expect {| true |}];
+  print_s ([%sexp_of: bool] (is_even 4));
+  [%expect {| true |}];
   print_s ([%sexp_of: int] (adder 0 3));
   [%expect {| 3 |}];
   print_s ([%sexp_of: int] (adder 0 1000000));
@@ -85,3 +89,7 @@ let%expect_test "labelled functions" =
 ;;
 
 let plus (x : float) (y : float) = x +. y
+
+let%expect_test "float adding" =
+  print_s ([%sexp_of: float] (plus 3. 2.));
+  [%expect {| 5. |}];
