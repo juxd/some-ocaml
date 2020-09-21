@@ -1,12 +1,22 @@
 #+TITLE: some ocaml exercises
 
+*part 4 coming soon - hands-on async/rpc*
+
 * Requirements
 - base, core, dune
+- async (part 4)
 
 * Nice to have
-- merlin, ocamlformat
+- utop, merlin, ocamlformat
 - Emacs (Tuareg)
 
 * References
 - Real world ocaml
+  [[https://dev.realworldocaml.org/][https://dev.realworldocaml.org/]]
 - Jane street's Core library [[https://ocaml.janestreet.com/ocaml-core/latest/doc/core/index.html][https://ocaml.janestreet.com/ocaml-core/latest/doc/core/index.html]]
+- Sildes for this workshop found here:  [[https://docs.google.com/presentation/d/1vc9FOX7Fbi4H3TXgvG6-JINjXonzOEgThqWKlpOU2_Y/edit?usp=sharing]]
+
+* TODO
+- [ ] ~Monad~ / ~Let_syntax~ exercises
+- [ ] Async exercises
+- [ ] Error handling exercises
