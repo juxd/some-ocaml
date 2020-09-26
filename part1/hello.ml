@@ -20,12 +20,8 @@ let%expect_test "hello world" =
 ;;
 
 let introduction_for name = sprintf "my name is %s" name
-
 let _i_am_from country = sprintf "and I am from %s" country
-
-let introduce_to_world _name _country =
-  raise_s [%message "To be implemented"]
-;;
+let introduce_to_world _name _country = raise_s [%message "To be implemented"]
 
 let%expect_test "self introduction" =
   print_endline (introduce_to_world "Joel" "Singapore");
@@ -34,9 +30,7 @@ let%expect_test "self introduction" =
 
 (* Recursive functions *)
 
-let rec fac x =
-  if x = 0 then 1 else x * fac (x - 1)
-;;
+let rec fac x = if x = 0 then 1 else x * fac (x - 1)
 
 let%expect_test "factorials" =
   print_s ([%sexp_of: int] (fac 3));
@@ -47,15 +41,10 @@ let%expect_test "factorials" =
   [%expect {| 120 |}]
 ;;
 
-let rec is_odd x =
-  is_even (x - 1)
-and is_even x =
-  if x <= 0 then x = 0 else is_odd (x - 1)
-;;
+let rec is_odd x = is_even (x - 1)
+and is_even x = if x <= 0 then x = 0 else is_odd (x - 1)
 
-let rec adder x n =
-  if n = 0 then x else 1 + adder x (n - 1)
-;;
+let rec adder x n = if n = 0 then x else 1 + adder x (n - 1)
 
 let%expect_test "adder" =
   print_s ([%sexp_of: bool] (is_odd 3));
@@ -77,7 +66,8 @@ let appropriate_intro ~name ?(pronoun = "they") () =
 ;;
 
 let%expect_test "labelled functions" =
-  printf "%d = %d\n"
+  printf
+    "%d = %d\n"
     (divide ~numerator:6 ~denominator:2)
     (divide ~denominator:2 ~numerator:6);
   [%expect {| 3 = 3 |}];
@@ -92,4 +82,5 @@ let plus (x : float) (y : float) = x +. y
 
 let%expect_test "float adding" =
   print_s ([%sexp_of: float] (plus 3. 2.));
-  [%expect {| 5. |}];
+  [%expect {| 5. |}]
+;;
