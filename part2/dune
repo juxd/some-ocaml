@@ -2,6 +2,6 @@
  (name part2)
  (public_name part2)
  (libraries base core)
- (inline_tests)
+ ; (inline_tests)
  (preprocess (pps ppx_jane))
 )

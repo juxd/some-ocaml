@@ -2,9 +2,9 @@ open Core
 
 (* When dealing with sequences of information, we typically use lists *)
 
-let some_primes = [ 2; 3; 5; 7; 11 ] (* one way of constructing lists *)
+let some_primes = [ 2; 3; 5; 7; 11 ]
 
-let some_names = [ "Donald"; "Jeff"; "John"; "Julius" ] (* another way *)
+let some_names = [ "Donald"; "Jeff"; "John"; "Julius" ]
 
 (* With lists, we can iterate with pattern matching *)
 
@@ -56,8 +56,7 @@ let weighted_average ls =
 ;;
 
 let weighted_average' ls =
-  ls
-  |> List.map ~f:(fun (value, weight) -> value *. weight, weight)
+  List.map ls ~f:(fun (value, weight) -> value *. weight, weight)
   |> List.fold
        ~f:(fun (acc_value, acc_weight) (value, weight) ->
          acc_value +. value, acc_weight +. weight)
