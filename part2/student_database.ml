@@ -4,7 +4,7 @@ module StudentName = Comparable.Make (String)
 type t = Student.t list StudentName.Map.t [@@deriving sexp]
 
 let empty = StudentName.Map.empty
-let count = Map.length
+let count t = Map.fold t ~init:0 ~f:(fun ~key:_ ~data acc -> acc + List.length data)
 let insert t ~student = Map.add_multi t ~key:(Student.name student) ~data:student
 let find _t ~name:_ = raise_s [%message "to be implemented"]
 let average_years_matriculated _t = raise_s [%message "to be implemented"]

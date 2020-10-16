@@ -39,7 +39,6 @@ let make_implementations ~server_state =
 let serve_rpc ~server_state ~address ~port =
   let implementations = make_implementations ~server_state in
   let where_to_listen = Tcp.Where_to_listen.bind_to address port in
-  printf !"server running on %{sexp:Tcp.Where_to_listen.inet}\n" where_to_listen;
   let%bind.Deferred server =
     Rpc.Connection.serve
       ~implementations
@@ -47,6 +46,10 @@ let serve_rpc ~server_state ~address ~port =
       ~where_to_listen
       ()
   in
+  let host_and_port =
+    Socket.Address.Inet.to_host_and_port (Tcp.Server.listening_on_address server)
+  in
+  printf !"server running on %{sexp:Host_and_port.t}\n" host_and_port;
   let%map.Deferred () = Tcp.Server.close_finished server in
   print_endline "server stopped running"
 ;;
@@ -55,7 +58,7 @@ let start_command =
   Command.async_or_error
     ~summary:"start the server"
     (let%map_open.Command sexp_path =
-       flag "path" (required string) ~doc:"path of the database stored"
+       flag "path" (required string) ~doc:"FILEPATH where database is stored"
      in
      fun () ->
        let open Deferred.Or_error.Let_syntax in
