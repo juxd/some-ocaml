@@ -1,10 +1,11 @@
 open Core
 module StudentName = Comparable.Make (String)
 
-type t = Student.t list StudentName.Map.t
+type t = Student.t list StudentName.Map.t [@@deriving sexp]
 
-let empty : t = StudentName.Map.empty
-let insert t ~name ~student = Map.add_multi t ~key:name ~data:student
+let empty = StudentName.Map.empty
+let count = Map.length
+let insert t ~student = Map.add_multi t ~key:(Student.name student) ~data:student
 let find _t ~name:_ = raise_s [%message "to be implemented"]
 let average_years_matriculated _t = raise_s [%message "to be implemented"]
 let oldest_students _t ~n:_ = raise_s [%message "to be implemented"]
@@ -21,10 +22,7 @@ let%expect_test _ =
     |> List.map ~f:(fun (name, id, matriculated_year) ->
            Student.create ~name ~id ~matriculated_year)
   in
-  let db =
-    List.fold students ~init:empty ~f:(fun db student ->
-        insert db ~name:(Student.name student) ~student)
-  in
+  let db = List.fold students ~init:empty ~f:(fun db student -> insert db ~student) in
   let johns = find db ~name:"John" in
   print_s ([%sexp_of: Student.t list] johns);
   [%expect

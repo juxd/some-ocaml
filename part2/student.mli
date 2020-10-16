@@ -1,6 +1,6 @@
 open Core
 
-type t [@@deriving sexp_of]
+type t [@@deriving bin_io, sexp]
 
 module Student_id : Identifiable.S
 

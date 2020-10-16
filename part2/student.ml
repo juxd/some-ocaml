@@ -15,7 +15,7 @@ type t =
   ; id : Student_id.t
   ; matriculated_year : int
   }
-[@@deriving fields, sexp_of]
+[@@deriving bin_io, fields, sexp]
 
 let create ~name ~id ~matriculated_year : t =
   { name; id = Student_id.of_string id; matriculated_year }
